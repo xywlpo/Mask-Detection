@@ -30,9 +30,30 @@ make
 推荐使用labelimg进行标注，最好使用命令行安装版本，可在github上搜索即可获得
 #### 数据编号
 最好使用合理的编号，推荐在ubuntu 18.04下进行批量图像改名，可提供模式化修改，非常方便。**注意数据集中的图片最好都是.jpg的图像，否则使用voc_label.py生成最后训练数据文件时会默认将所有的图片后缀设置为jpg**
-#### 数据组织
+#### 数据组织（Pascal Voc格式）
 使用labelimg进行数据标注时，请选择pascal voc的标注文件格式，在此格式下，每张图片对应生成一个xml标注文件
-- 在darknet目录下新建以下文件夹。
+- 在darknet目录下新建以下文件夹
+
+![](https://github.com/xywlpo/YOLOV3-Mask-Detection/blob/master/1.bmp)
+
+将数据集的图片拷贝到JPEGImages文件夹中，数据集的标签文件拷贝到Annotations文件夹中，在VOC2007文件夹下新建test.py（在本项目提供的数据集压缩包中包含），可自动将数据集分裂成train.txt, val.txt, test.txt, trainval.txt。最后生成的目录如下图所示
+
+![](https://github.com/xywlpo/YOLOV3-Mask-Detection/blob/master/2.bmp)
+
+由于yolov3的标签内容为一行5个数，分别代表：类别（从0开始编号）、bbox中心x坐标、bbox中心y坐标、bbox宽、bbox高。并且这些坐标都是归一化到0~1区间的，与VOC的标注不一样，因此这里还需进行转换，使用voc_label.py文件执行，该文件也可以下载：
+```
+wget https://pjreddie.com/media/files/voc_label.py
+```
+该文件有两处需要修改，分别是sets和classes，如下图所示
+
+![](https://github.com/xywlpo/YOLOV3-Mask-Detection/blob/master/3.bmp)
+
+运行该文件，则可获得2007_train.txt,2007_val.txt,2007_test.txt，VOCdevkit下的VOC2007也会多生成一个labels文件夹
+```
+python voc_label.py
+cat 2007_train.txt 2007_val.txt  > train.txt
+````
+
 
 
 
