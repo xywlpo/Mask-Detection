@@ -63,13 +63,8 @@ valid = <Path-to-Voc>/2007_test.txt
 names = data/voc.names
 backup = backup
 ```
-2. 修改data/voc.names和coco.names
-
-打开对应的文件直接修改成自己的类名就可以
-
-3. 修改模型的配置文件：cfg/yolov3.cfg
-
-打开文件，ctrl+f搜yolo, 总共会搜出2-3个含有yolo的地方，每个地方都必须要改2处：
+2. 修改data/voc.names和coco.names，打开对应的文件直接修改成自己的类名就可以
+3. 修改模型的配置文件：cfg/yolov3.cfg。打开文件，ctrl+f搜yolo, 总共会搜出2-3个含有yolo的地方，每个地方都必须要改2处：
 ```
 filters：3*（5+len（classes））；
 其中：classes: len(classes) = 1，这里以单个类dog为例
@@ -79,9 +74,7 @@ classes = 1
 ```
 4. cfg文件的开头可以选择batch和subdivisions的大小，batch表示多少张图进行权重更新，subdivisions表示当前批次按照几次分别送入网络
 
-5. 模型训练
-
-可采用预训练模型进行训练
+5. 模型训练，可采用预训练模型进行训练
 - 下载darknet53预训练模型（适用于yolov3-416和yolov3-608，两个模型就是输入图像尺寸不同，608分辨率的效果更好一些）
     - wget https://pjreddie.com/media/files/darknet53.conv.74
     - [百度网盘](https://pan.baidu.com/s/1zcwCOfyivsxc_k4Ej74fKw)，提取码：oc4h
