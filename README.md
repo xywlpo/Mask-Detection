@@ -74,7 +74,7 @@ classes = 1
 ```
 4. cfg文件的开头可以选择batch和subdivisions的大小，batch表示多少张图进行权重更新，subdivisions表示当前批次按照几次分别送入网络
 
-5. 模型训练，可采用预训练模型进行训练
+5. 预训练模型
 - 下载darknet53预训练模型（适用于yolov3-416和yolov3-608，两个模型就是输入图像尺寸不同，608分辨率的效果更好一些）
 ```
 wget https://pjreddie.com/media/files/darknet53.conv.74
@@ -85,7 +85,26 @@ wget https://pjreddie.com/media/files/darknet53.conv.74
 ./darknet partial cfg/yolov3-tiny.cfg yolov3-tiny.weights yolov3-tiny.conv.15 15
 更多参见：https://github.com/AlexeyAB/darknet/blob/57e878b4f9512cf9995ff6b5cd6e0d7dc1da9eaf/build/darknet/x64/partial.cmd#L24
 ```
+6. 模型训练
+```
+./darknet detector train cfg/voc.data cfg/yolov3.cfg darknet53.conv.74        #直接从头训练
+./darknet detector train cfg/voc.data cfg/yolov3.cfg backup/yolov3.backup     #恢复训练
+```
+7. 训练loss绘制：本工程已修改成每隔200轮训练保存一次模型，同时保存所有的loss值为txt文件，可使用darknet目录下的draw_loss.py绘制loss
 
+![](https://github.com/xywlpo/YOLOV3-Mask-Detection/blob/master/loss.bmp)
 
+## 模型测试
+1. 测试命令
+```
+./darknet detect cfg/voc.data cfg/yolov3.cfg backup/yolov3_final.weights      #该命令本人修改过，可以之后输入图片名进行测试
+```
+2. 口罩训练采用cfg/yolov3.cfg，即608x608的输入分辨率，迭代4000次，测试结果如下
+
+![](https://github.com/xywlpo/YOLOV3-Mask-Detection/blob/master/4.bmp)
+![](https://github.com/xywlpo/YOLOV3-Mask-Detection/blob/master/5.bmp)
+![](https://github.com/xywlpo/YOLOV3-Mask-Detection/blob/master/6.bmp)
+![](https://github.com/xywlpo/YOLOV3-Mask-Detection/blob/master/7.bmp)
+![](https://github.com/xywlpo/YOLOV3-Mask-Detection/blob/master/8.bmp)
 
 
