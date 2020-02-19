@@ -94,6 +94,18 @@ wget https://pjreddie.com/media/files/darknet53.conv.74
 
 ![](https://github.com/xywlpo/YOLOV3-Mask-Detection/blob/master/loss.bmp)
 
+## Darknet网络调优技巧（from AlexeyAB）
+```
+- 首先对数据集进行检错，使用提供的如下库进行检测：https://github.com/AlexeyAB/Yolo_mark
+- 数据集最好每个类有2000张图片，通常每个类需要2000-4000次迭代训练即可，因此总共需要至少迭代2000*类别数次迭代
+- avg loss不再下降时可以停止训练，为了防止过拟合，需要在val loss由下降转向上升的拐点停止训练
+- random=1可以设置适应多分辨率
+- 数据集最好有没有标注的对象，即负样本，对应空的txt文件，最好有多少样本就设计多少负样本
+- 对于一张图有很多个样本的情况，使用max=200属性(yolo层或者region层)
+- 在训练完以后，进行目标检测的时候，可以提高网络的分辨率，以便刚好检测小目标
+    - 不需要重新训练，需要使用原先低分辨率的权重，测用更高分辨率
+    - 为了得到更高的检测效果，可以提升分辨率至608*608甚至832*832（需满足32的倍数）
+```
 ## 模型测试
 1. 测试命令
 ```
@@ -107,4 +119,7 @@ wget https://pjreddie.com/media/files/darknet53.conv.74
 ![](https://github.com/xywlpo/YOLOV3-Mask-Detection/blob/master/7.bmp)
 ![](https://github.com/xywlpo/YOLOV3-Mask-Detection/blob/master/8.bmp)
 
-
+## 项目实施
+```
+https://github.com/AlexeyAB/darknet#datasets
+```
