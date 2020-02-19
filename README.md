@@ -112,7 +112,11 @@ wget https://pjreddie.com/media/files/darknet53.conv.74
 ./darknet detect cfg/voc.data cfg/yolov3.cfg backup/yolov3_final.weights      #该命令本人修改过，可以之后输入图片名进行测试
 ```
 2. 口罩训练采用cfg/yolov3.cfg，即608x608的输入分辨率，迭代4000次，测试结果如下
-
+```
+训练好的模型
+[4000次迭代](https://pan.baidu.com/s/1YDaECsObSvv2fa5fYun81Q)，提取码：mw2f
+[6000次迭代](https://pan.baidu.com/s/1A6FB1OBJn2zY2jymfDD2Sw)，提取码：oup6
+```
 ![](https://github.com/xywlpo/YOLOV3-Mask-Detection/blob/master/4.bmp)
 ![](https://github.com/xywlpo/YOLOV3-Mask-Detection/blob/master/5.bmp)
 ![](https://github.com/xywlpo/YOLOV3-Mask-Detection/blob/master/6.bmp)
