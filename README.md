@@ -53,8 +53,40 @@ wget https://pjreddie.com/media/files/voc_label.py
 python voc_label.py
 cat 2007_train.txt 2007_val.txt  > train.txt
 ````
+口罩数据集下载：[百度网盘](https://pan.baidu.com/s/1xAdLEfaDB3PLHyKl3Uq4Mg)，提取密码：givm。至此数据集就准备妥当了。
+## 模型训练
+1. 修改cfg/voc.data
+```
+classes = 1   #修改为自己类别的个数
+train = <Path-to-Voc>/train.txt
+valid = <Path-to-Voc>/2007_test.txt
+names = data/voc.names
+backup = backup
+```
+2. 修改data/voc.names和coco.names
 
+打开对应的文件直接修改成自己的类名就可以
 
+3. 修改模型的配置文件：cfg/yolov3.cfg
+
+打开文件，ctrl+f搜yolo, 总共会搜出2-3个含有yolo的地方，每个地方都必须要改2处：
+```
+filters：3*（5+len（classes））；
+其中：classes: len(classes) = 1，这里以单个类dog为例
+filters = 18
+classes = 1
+可修改：random = 1：原来是1，显存小改为0。（是否要多尺度输出。）
+```
+4. cfg文件的开头可以选择batch和subdivisions的大小，batch表示多少张图进行权重更新，subdivisions表示当前批次按照几次分别送入网络
+
+5. 模型训练
+
+可采用预训练模型进行训练
+- 下载darknet53预训练模型（适用于yolov3-416和yolov3-608，两个模型就是输入图像尺寸不同，608分辨率的效果更好一些）
+    - wget https://pjreddie.com/media/files/darknet53.conv.74
+    - [百度网盘](https://pan.baidu.com/s/1zcwCOfyivsxc_k4Ej74fKw)，提取码：oc4h
+- 通过已有模型分离出backbone网络（通常用于yolov3-tiny的训练，yolov3-tiny不宜使用darknet53训练，因为两者结构就不相同）
+    - 的
 
 
 
