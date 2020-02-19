@@ -78,7 +78,7 @@ classes = 1
 - 下载darknet53预训练模型（适用于yolov3-416和yolov3-608，两个模型就是输入图像尺寸不同，608分辨率的效果更好一些）
 ```
 wget https://pjreddie.com/media/files/darknet53.conv.74
-[百度网盘](https://pan.baidu.com/s/1zcwCOfyivsxc_k4Ej74fKw)，提取码：oc4h
+https://pan.baidu.com/s/1zcwCOfyivsxc_k4Ej74fKw，提取码：oc4h
 ```
 - 通过已有模型分离出backbone网络（通常用于yolov3-tiny的训练，yolov3-tiny不宜使用darknet53训练，因为两者结构就不相同）
 ```
@@ -114,8 +114,8 @@ wget https://pjreddie.com/media/files/darknet53.conv.74
 2. 口罩训练采用cfg/yolov3.cfg，即608x608的输入分辨率，迭代4000次，测试结果如下
 ```
 训练好的模型
-[4000次迭代](https://pan.baidu.com/s/1YDaECsObSvv2fa5fYun81Q)，提取码：mw2f
-[6000次迭代](https://pan.baidu.com/s/1A6FB1OBJn2zY2jymfDD2Sw)，提取码：oup6
+4000次迭代：https://pan.baidu.com/s/1YDaECsObSvv2fa5fYun81Q，提取码：mw2f
+6000次迭代：https://pan.baidu.com/s/1A6FB1OBJn2zY2jymfDD2Sw，提取码：oup6
 ```
 ![](https://github.com/xywlpo/YOLOV3-Mask-Detection/blob/master/4.bmp)
 ![](https://github.com/xywlpo/YOLOV3-Mask-Detection/blob/master/5.bmp)
