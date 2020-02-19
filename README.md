@@ -40,8 +40,19 @@ make
 
 ![](https://github.com/xywlpo/YOLOV3-Mask-Detection/blob/master/2.bmp)
 
+由于yolov3的标签内容为一行5个数，分别代表：类别（从0开始编号）、bbox中心x坐标、bbox中心y坐标、bbox宽、bbox高。并且这些坐标都是归一化到0~1区间的，与VOC的标注不一样，因此这里还需进行转换，使用voc_label.py文件执行，该文件也可以下载：
+```
+wget https://pjreddie.com/media/files/voc_label.py
+```
+该文件有两处需要修改，分别是sets和classes，如下图所示
 
+![](https://github.com/xywlpo/YOLOV3-Mask-Detection/blob/master/3.bmp)
 
+运行该文件，则可获得2007_train.txt,2007_val.txt,2007_test.txt，VOCdevkit下的VOC2007也会多生成一个labels文件夹
+```
+python voc_label.py
+cat 2007_train.txt 2007_val.txt  > train.txt
+````
 
 
 
